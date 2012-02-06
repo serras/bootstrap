@@ -35,7 +35,11 @@ label,
 input,
 button,
 select,
-textarea {
+textarea,
+.gwt-TextArea,
+.gwt-TextBox,
+.gwt-Checkbox,
+.gwt-RadioButton {
   #font > .sans-serif(@baseFontSize,normal,@baseLineHeight);
 }
 
@@ -50,6 +54,8 @@ label {
 input,
 textarea,
 select,
+.gwt-TextArea,
+.gwt-TextBox,
 .uneditable-input {
   display: inline-block;
   width: 210px;
@@ -70,14 +76,18 @@ select,
 // Inputs within a label
 label input,
 label textarea,
-label select {
+label select,
+label .gwt-TextArea,
+label .gwt-TextBox, {
   display: block;
 }
 
 // Mini reset for unique input types
 input[type="image"],
 input[type="checkbox"],
-input[type="radio"] {
+input[type="radio"],
+.gwt-CheckBox,
+.gwt-RadioButton {
   width: auto;
   height: auto;
   padding: 0;
@@ -90,7 +100,8 @@ input[type="radio"] {
 }
 
 // Reset the file input to browser defaults
-input[type="file"] {
+input[type="file"],
+.gwt-FileUpload {
   padding: initial;
   line-height: initial;
   border: initial;
@@ -109,7 +120,8 @@ input[type="submit"] {
 
 // Set the height of select and file controls to match text inputs
 select,
-input[type="file"] {
+input[type="file"],
+.gwt-FileUpload {
   height: 28px; /* In IE7, the height of the select element cannot be changed by height, only font-size */
   *margin-top: 4px; /* For IE7, add top margin to align select with labels */
   line-height: 28px;
@@ -122,10 +134,10 @@ select {
 }
 
 // Make multiple select elements height not fixed
-select[multiple],
+/*select[multiple],
 select[size] {
   height: auto;
-}
+}*/
 
 // Remove shadow from image inputs
 input[type="image"] {
@@ -133,7 +145,8 @@ input[type="image"] {
 }
 
 // Make textarea height behave
-textarea {
+textarea,
+.gwt-TextArea {
   height: auto;
 }
 
@@ -153,7 +166,9 @@ input[type="hidden"] {
   padding-left: 18px;
 }
 .radio input[type="radio"],
-.checkbox input[type="checkbox"] {
+.checkbox input[type="checkbox"]
+.radio .gwt-CheckBox,
+.checkbox .gwt-RadioButton {
   float: left;
   margin-left: -18px;
 }
@@ -187,13 +202,20 @@ input[type="hidden"] {
 // -----------
 
 input,
-textarea {
+textarea,
+.gwt-TextArea,
+.gwt-TextBox,
+.gwt-RadioButton {
   .box-shadow(inset 0 1px 1px rgba(0,0,0,.075));
   @transition: border linear .2s, box-shadow linear .2s;
   .transition(@transition);
 }
 input:focus,
-textarea:focus {
+textarea:focus,
+.gwt-TextArea:focus,
+.gwt-TextBox:focus,
+.gwt-Checkbox:focus,
+.gwt-RadioButton:focus {
   border-color: rgba(82,168,236,.8);
   @shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
   .box-shadow(@shadow);
@@ -202,6 +224,8 @@ textarea:focus {
 }
 input[type="file"]:focus,
 input[type="checkbox"]:focus,
+.gwt-CheckBox:focus,
+.gwt-FileUpload:focus,
 select:focus {
   .box-shadow(none); // override for file inputs
   .tab-focus();
@@ -224,6 +248,10 @@ select:focus {
 input[class*="span"],
 select[class*="span"],
 textarea[class*="span"],
+.gwt-TextArea:focus[class*="span"],
+.gwt-TextBox:focus[class*="span"],
+.gwt-Checkbox:focus[class*="span"],
+.gwt-RadioButton:focus[class*="span"],
 .uneditable-input {
   float: none;
   margin-left: 0;
@@ -248,7 +276,23 @@ select[disabled],
 textarea[disabled],
 input[readonly],
 select[readonly],
-textarea[readonly] {
+textarea[readonly],
+.gwt-TextArea[disabled],
+.gwt-TextBox[disabled],
+.gwt-Checkbox[disabled],
+.gwt-RadioButton[disabled],
+.gwt-FileUpload[disabled],
+.gwt-TextArea[readonly],
+.gwt-TextBox[readonly],
+.gwt-Checkbox[readonly],
+.gwt-RadioButton[readonly],
+.gwt-FileUpload[readonly],
+.gwt-TextArea-readonly,
+.gwt-TextBox-readonly,
+.gwt-Checkbox-readonly,
+.gwt-RadioButton-readonly,
+.gwt-FileUpload-readonly
+ {
   background-color: #f5f5f5;
   border-color: #ddd;
   cursor: not-allowed;
@@ -271,7 +315,9 @@ textarea[readonly] {
   // Style inputs accordingly
   input,
   select,
-  textarea {
+  textarea,
+  .gwt-TextArea,
+  .gwt-TextBox {
     color: @textColor;
     border-color: @borderColor;
     &:focus {
@@ -304,7 +350,9 @@ textarea[readonly] {
 // Shares styles with the .control-group.error above
 input:focus:required:invalid,
 textarea:focus:required:invalid,
-select:focus:required:invalid {
+select:focus:required:invalid,
+.gwt-TextArea:focus:required:invalid,
+.gwt-TextBox:focus:required:invalid {
   color: #b94a48;
   border-color: #ee5f5b;
   &:focus {
@@ -384,7 +432,7 @@ select:focus:required:invalid {
     width: auto;
     min-width: 16px;
     height: @baseLineHeight;
-    margin-right: -1px;
+    margin-right: 0px;
     padding: 4px 5px;
     font-weight: normal;
     line-height: @baseLineHeight;

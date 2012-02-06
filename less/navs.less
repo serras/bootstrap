@@ -85,17 +85,28 @@
 // ----
 
 // Give the tabs something to sit on
-.nav-tabs {
+.nav-tabs, .gwt-TabBar, .gwt-DecoratedTabBar {
   border-bottom: 1px solid #ddd;
+  .gwt-TabBarItem {
+    padding: 5px 15px;
+  }
+  .gwt-TabBarItem-disabled {
+    cursor: default;
+    color: #999999;
+  }
 }
 
 // Make the list-items overlay the bottom border
-.nav-tabs > li {
+.nav-tabs > li,
+.gwt-TabBar > li,
+.gwt-DecoratedTabBar > li {
   margin-bottom: -1px;
 }
 
 // Actual tabs (as links)
-.nav-tabs > li > a {
+.nav-tabs > li > a,
+.gwt-TabBar > li > a,
+.gwt-DecoratedTabBar > li > a {
   padding-top: 9px;
   padding-bottom: 9px;
   border: 1px solid transparent;
@@ -106,12 +117,31 @@
 }
 // Active state, and it's :hover to override normal :hover
 .nav-tabs > .active > a,
-.nav-tabs > .active > a:hover {
+.nav-tabs > .active > a:hover,
+.gwt-TabBar > .active > a,
+.gwt-DecoratedTabBar > .active > a,
+.gwt-TabBar > .active > a:hover,
+.gwt-DecoratedTabBar > .active > a:hover,
+.gwt-TabBar .gwt-TabBarItem-selected,
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected {
   color: @gray;
   background-color: @white;
   border: 1px solid #ddd;
   border-bottom-color: transparent;
   cursor: default;
+}
+
+.gwt-TabBar {
+  .gwt-TabBarItem {
+    padding: 5px 5px;
+    line-height: 15px;
+  }
+}
+
+.gwt-DecoratedTabBar {
+  .gwt-TabBarItem {
+    padding: 5px 15px;
+  }
 }
 
 // PILLS
@@ -180,7 +210,9 @@
 
 // Position the menu
 .nav-tabs .dropdown-menu,
-.nav-pills .dropdown-menu {
+.nav-pills .dropdown-menu,
+.gwt-TabBar .dropdown-menu,
+.gwt-DecoratedTabBar .dropdown-menu {
   margin-top: 1px;
   border-width: 1px;
 }
@@ -192,19 +224,28 @@
 // -------------------------
 // Make carets use linkColor to start
 .nav-tabs .dropdown-toggle .caret,
-.nav-pills .dropdown-toggle .caret {
+.nav-pills .dropdown-toggle .caret,
+.gwt-TabBar .dropdown-toggle .caret,
+.gwt-DecoratedTabBar .dropdown-toggle .caret {
   border-top-color: @linkColor;
   margin-top: 6px;
 }
 .nav-tabs .dropdown-toggle:hover .caret,
-.nav-pills .dropdown-toggle:hover .caret {
+.nav-pills .dropdown-toggle:hover .caret,
+.gwt-TabBar .dropdown-toggle:hover .caret,
+.gwt-DecoratedTabBar .dropdown-toggle:hover .caret {
   border-top-color: @linkColorHover;
 }
 
 // Active dropdown links
 // -------------------------
 .nav-tabs .active .dropdown-toggle .caret,
-.nav-pills .active .dropdown-toggle .caret {
+.nav-pills .active .dropdown-toggle .caret,
+.gwt-TabBar .active .dropdown-toggle .caret,
+.gwt-DecoratedTabBar .active .dropdown-toggle .caret,
+.gwt-TabBar .gwt-TabBarItem-selected .dropdown-toggle .caret,
+.gwt-DecoratedTabBar .gwt-TabBarItem-selected .dropdown-toggle .caret
+ {
   border-top-color: @grayDark;
 }
 
@@ -219,6 +260,8 @@
 // -------------------------
 .nav-tabs .open .dropdown-toggle,
 .nav-pills .open .dropdown-toggle,
+.gwt-TabBar .open .dropdown-toggle .caret,
+.gwt-DecoratedTabBar .open .dropdown-toggle .caret,
 .nav > .open.active > a:hover {
   color: @white;
   background-color: @grayLight;
